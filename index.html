@@ -371,54 +371,54 @@ footer.note{
 
 <div class="wrap">
   <header class="page">
-    <p class="eyebrow" data-i18n="eyebrow">Defensive Pedal · Cycling Risk Survey</p>
-    <h1 data-i18n-html="title">School Streets<br>of Bucharest</h1>
-    <p class="dek" data-i18n="dek">Every school and highschool in the city, matched to the street outside it and graded by how dangerous that street is to cycle. Institutions and street geometry from OpenStreetMap; risk banding from the Defensive Pedal routing model.</p>
+    <p class="eyebrow" data-i18n="eyebrow">Defensive Pedal · Studiu de risc pentru cicliști</p>
+    <h1 data-i18n-html="title">Străzile școlilor<br>din București</h1>
+    <p class="dek" data-i18n="dek">Fiecare școală și liceu din oraș, asociate cu strada din fața lor și evaluate după cât de periculos este să circuli cu bicicleta pe ea. Instituțiile și geometria străzilor provin din OpenStreetMap; încadrarea pe benzi de risc, din modelul de rutare Defensive Pedal.</p>
     <div class="meta-strip">
-      <span data-i18n-html="mCoverage"><b>Coverage</b> Municipiul București</span>
-      <span data-i18n-html="mInst"><b>Institutions</b> 303</span>
+      <span data-i18n-html="mCoverage"><b>Acoperire</b> Municipiul București</span>
+      <span data-i18n-html="mInst"><b>Instituții</b> 303</span>
       <span data-i18n-html="mModel"><b>Model</b> b46v2</span>
-      <span data-i18n-html="mSource"><b>Source</b> OSM ODbL</span>
+      <span data-i18n-html="mSource"><b>Sursă</b> OSM ODbL</span>
     </div>
   </header>
 
   <div class="stats">
-    <div class="stat"><div class="num" id="statTotal">&nbsp;</div><div class="lbl" data-i18n="sInst">Institutions</div></div>
-    <div class="stat"><div class="num" id="statHS">&nbsp;</div><div class="lbl" data-i18n="sHigh">Highschools</div></div>
-    <div class="stat"><div class="num" id="statMed">&nbsp;</div><div class="lbl" data-i18n="sStreets">Streets</div></div>
-    <div class="stat"><div class="num" id="statHigh">&nbsp;</div><div class="lbl" data-i18n="sOnHigh">On High / Extreme</div></div>
+    <div class="stat"><div class="num" id="statTotal">&nbsp;</div><div class="lbl" data-i18n="sInst">Instituții</div></div>
+    <div class="stat"><div class="num" id="statHS">&nbsp;</div><div class="lbl" data-i18n="sHigh">Licee</div></div>
+    <div class="stat"><div class="num" id="statMed">&nbsp;</div><div class="lbl" data-i18n="sStreets">Străzi</div></div>
+    <div class="stat"><div class="num" id="statHigh">&nbsp;</div><div class="lbl" data-i18n="sOnHigh">Pe risc ridicat / extrem</div></div>
   </div>
 
   <div class="tierbar" id="tierbar">
-    <button class="tierseg" data-tier="Safer"><span class="n" id="tSafer"></span>&nbsp;<span data-i18n="tier.Safer">Safer</span></button>
-    <button class="tierseg" data-tier="Typical"><span class="n" id="tTypical"></span>&nbsp;<span data-i18n="tier.Typical">Typical</span></button>
-    <button class="tierseg" data-tier="High"><span class="n" id="tHigh"></span>&nbsp;<span data-i18n="tier.High">High</span></button>
-    <button class="tierseg" data-tier="Extreme"><span class="n" id="tExtreme"></span>&nbsp;<span data-i18n="tier.Extreme">Extreme</span></button>
+    <button class="tierseg" data-tier="Safer"><span class="n" id="tSafer"></span>&nbsp;<span data-i18n="tier.Safer">Mai sigur</span></button>
+    <button class="tierseg" data-tier="Typical"><span class="n" id="tTypical"></span>&nbsp;<span data-i18n="tier.Typical">Obișnuit</span></button>
+    <button class="tierseg" data-tier="High"><span class="n" id="tHigh"></span>&nbsp;<span data-i18n="tier.High">Ridicat</span></button>
+    <button class="tierseg" data-tier="Extreme"><span class="n" id="tExtreme"></span>&nbsp;<span data-i18n="tier.Extreme">Extrem</span></button>
   </div>
 
   <div class="controls">
     <div class="search">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      <input id="q" type="text" placeholder="Search school or street name…" data-i18n-ph="search" autocomplete="off">
+      <input id="q" type="text" placeholder="Caută o școală sau o stradă…" data-i18n-ph="search" autocomplete="off">
     </div>
     <div class="chipgroup" id="kindFilter">
-      <button class="chip active" data-kind="all" data-i18n="cAll">All types</button>
-      <button class="chip" data-kind="H" data-i18n="cHigh">Highschools</button>
-      <button class="chip" data-kind="S" data-i18n="cSchool">Schools</button>
+      <button class="chip active" data-kind="all" data-i18n="cAll">Toate</button>
+      <button class="chip" data-kind="H" data-i18n="cHigh">Licee</button>
+      <button class="chip" data-kind="S" data-i18n="cSchool">Școli</button>
     </div>
     <select class="sortsel" id="sortsel">
-      <option value="risk_desc" data-i18n="oRiskDesc">Risk: highest first</option>
-      <option value="risk_asc" data-i18n="oRiskAsc">Risk: lowest first</option>
-      <option value="name_asc" data-i18n="oName">School A → Z</option>
-      <option value="street_asc" data-i18n="oStreet">Street A → Z</option>
+      <option value="risk_desc" data-i18n="oRiskDesc">Risc: descrescător</option>
+      <option value="risk_asc" data-i18n="oRiskAsc">Risc: crescător</option>
+      <option value="name_asc" data-i18n="oName">Școală A → Z</option>
+      <option value="street_asc" data-i18n="oStreet">Stradă A → Z</option>
     </select>
   </div>
   <p class="count" id="rowcount"></p>
 
   <button class="langbtn" id="langBtn" type="button" aria-label="Limba / Language"></button>
   <div class="viewtoggle" id="viewToggle">
-    <button class="active" data-view="list" data-i18n="vList">List</button>
-    <button data-view="map" data-i18n="vMap">Map</button>
+    <button class="active" data-view="list" data-i18n="vList">Listă</button>
+    <button data-view="map" data-i18n="vMap">Hartă</button>
   </div>
 
   <div class="tablewrap" id="listView">
@@ -426,16 +426,16 @@ footer.note{
       <thead>
         <tr>
           <th style="width:2.4rem">#</th>
-          <th data-sort="name" data-i18n="thSchool">School</th>
-          <th data-sort="street" data-i18n="thStreet">Street</th>
-          <th data-sort="risk" data-i18n="thBand">Risk band</th>
-          <th class="up" data-i18n="thUp">Top risk factor</th>
-          <th class="down" data-i18n="thDown">Top mitigating factor</th>
+          <th data-sort="name" data-i18n="thSchool">Școală</th>
+          <th data-sort="street" data-i18n="thStreet">Stradă</th>
+          <th data-sort="risk" data-i18n="thBand">Bandă de risc</th>
+          <th class="up" data-i18n="thUp">Principalul factor agravant</th>
+          <th class="down" data-i18n="thDown">Principalul factor atenuant</th>
         </tr>
       </thead>
       <tbody id="tbody"></tbody>
     </table>
-    <div class="emptystate" id="emptystate" style="display:none" data-i18n="empty">No schools match that search.</div>
+    <div class="emptystate" id="emptystate" style="display:none" data-i18n="empty">Nicio școală nu corespunde căutării.</div>
   </div>
 
   <div class="mapcard" id="mapView" style="display:none">
@@ -446,24 +446,22 @@ footer.note{
       <button class="map-btn" id="zoomReset" title="Fit to city" aria-label="Fit to city">&#8962;</button>
     </div>
     <div class="map-legend">
-      <div class="lt" data-i18n="lgRisk">Street risk</div>
+      <div class="lt" data-i18n="lgRisk">Riscul străzii</div>
       <div class="row"><span class="sw" style="background:var(--safer)"></span><span data-i18n="tier.Safer">Safer</span></div>
       <div class="row"><span class="sw" style="background:var(--typical)"></span><span data-i18n="tier.Typical">Typical</span></div>
       <div class="row"><span class="sw" style="background:var(--high)"></span><span data-i18n="tier.High">High</span></div>
       <div class="row"><span class="sw" style="background:var(--extreme)"></span><span data-i18n="tier.Extreme">Extreme</span></div>
       <hr>
-      <div class="lt" data-i18n="lgShown">Schools shown</div>
-      <div class="row"><span class="sw mk"></span><span data-i18n="kindS">School</span></div>
-      <div class="row"><span class="sw mk dia"></span><span data-i18n="kindH">Highschool</span></div>
+      <div class="lt" data-i18n="lgShown">Instituții afișate</div>
+      <div class="row"><span class="sw mk"></span><span data-i18n="kindS">Școală</span></div>
+      <div class="row"><span class="sw mk dia"></span><span data-i18n="kindH">Liceu</span></div>
     </div>
-    <div class="map-attrib" data-i18n="attrib">Basemap &amp; risk data &copy; OpenStreetMap contributors (ODbL)</div>
+    <div class="map-attrib" data-i18n="attrib">Harta de bază și datele de risc © contribuitorii OpenStreetMap (ODbL)</div>
     <div class="map-tip" id="mapTip"></div>
   </div>
-  <p class="map-note" id="mapNote" style="display:none" data-i18n-html="mapNote">Drag to pan, scroll or the +/&minus; buttons to zoom, click a school marker for its full risk breakdown. Colored streets are the ones with schools on them, shaded by each segment's own risk band — the filters above narrow which <em>markers</em> appear, not the street network. Everything under them (the rest of the road network, water, parks, the city outline) is drawn from the same OpenStreetMap data and baked into the page: this sandbox blocks external tile servers, so there is no live basemap to call.</p>
+  <p class="map-note" id="mapNote" style="display:none" data-i18n-html="mapNote">Trage pentru a deplasa harta, derulează sau folosește butoanele +/− pentru zoom, apasă pe un marcaj pentru detalii. Străzile colorate sunt cele pe care se află școli, nuanțate după banda de risc a fiecărui segment — filtrele de mai sus restrâng <em>marcajele</em> afișate, nu rețeaua de străzi. Tot ce se vede dedesubt (restul rețelei rutiere, apele, parcurile, conturul orașului) este desenat din aceleași date OpenStreetMap și înglobat în pagină: acest mediu blochează serverele externe de dale, așa că nu există o hartă de bază care să poată fi încărcată.</p>
 
-  <footer class="note" data-i18n-html="footer">
-    A street's band comes from the length-weighted average across every road segment carrying that street name inside the Bucharest administrative boundary (OSM relation 377733), restricted to drivable street classes (motorway…service; cycleways and footways excluded). Each school is matched to its geometrically nearest such street via a KNN spatial lookup — median distance 43&nbsp;m, two campuses (large sites) matched at 280&ndash;360&nbsp;m. 30 amenity=school entries were excluded as non-K-12 (driving schools, after-school programs, kindergartens-only, professional training). Scores are published as bands, and factors by <em>direction only</em> — whether each pushes a street's risk up (▲) or down (▼), strongest first. The underlying numbers and factor weights are model internals and are deliberately not included. The flat per-city constant is omitted too: it is identical on every Bucharest street and says nothing about any one of them.
-  </footer>
+  <footer class="note" data-i18n-html="footer">Banda unei străzi rezultă din media ponderată cu lungimea a tuturor segmentelor de drum care poartă acel nume în interiorul limitei administrative a Bucureștiului (relația OSM 377733), limitată la clasele de drum circulabile (motorway…service; pistele de biciclete și trotuarele sunt excluse). Fiecare școală este asociată celei mai apropiate astfel de străzi printr-o căutare spațială KNN — distanță mediană 43&nbsp;m, două campusuri (situri mari) asociate la 280–360&nbsp;m. 30 de intrări amenity=school au fost excluse ca nefiind învățământ preuniversitar (școli de șoferi, programe after-school, grădinițe, formare profesională). Scorurile sunt publicate ca benzi, iar factorii doar ca <em>direcție</em> — dacă fiecare crește (▲) sau scade (▼) riscul străzii, în ordinea importanței. Valorile numerice și ponderile factorilor țin de interiorul modelului și nu sunt incluse intenționat. Constanta fixă pe oraș este și ea omisă: este identică pe fiecare stradă din București și nu spune nimic despre vreuna anume.</footer>
 </div>
 
 <div class="scrim" id="scrim"></div>
@@ -483,10 +481,10 @@ footer.note{
     </div>
     <div class="panel-meta" id="pMeta"></div>
 
-    <div class="panel-section-lbl" data-i18n="panelUp">↑ Increases risk</div>
+    <div class="panel-section-lbl" data-i18n="panelUp">↑ Crește riscul</div>
     <div id="pUp"></div>
 
-    <div class="panel-section-lbl" data-i18n="panelDown">↓ Decreases risk</div>
+    <div class="panel-section-lbl" data-i18n="panelDown">↓ Scade riscul</div>
     <div id="pDown"></div>
   </div>
 </aside>
@@ -509,9 +507,9 @@ const tierOf = d => TIER_NAMES[d.t];
 const KIND_LABEL = {H:'Highschool', S:'School'};
 
 // ─── Bilingual RO / EN ──────────────────────────────────────────────────────
-// One page serves both languages; the choice persists in localStorage. A
-// Romanian browser gets Romanian on first visit, everyone else English.
-// Follows the EN/FR pattern already shipped on the Paris map.
+// One page serves both languages; the choice persists in localStorage.
+// Romanian is the default, English is the toggle. Follows the EN/FR pattern
+// already shipped on the Paris map.
 const I18N = {
   en:{
     eyebrow:'Defensive Pedal · Cycling Risk Survey',
@@ -607,13 +605,10 @@ const FACTOR_RE_RO = [
   [/^Roundabout (.+)$/,                     m=>`Sens giratoriu ${m[1]}`],
 ];
 
-let LANG = 'en';
-try{
-  const saved = localStorage.getItem('dpLang');
-  LANG = saved || ((navigator.language||'').toLowerCase().startsWith('ro') ? 'ro' : 'en');
-}catch(e){
-  LANG = (navigator.language||'').toLowerCase().startsWith('ro') ? 'ro' : 'en';
-}
+// Romanian is the default for everyone — this is a Bucharest page, read mostly
+// by people who live here. English is the toggle. A saved choice always wins.
+let LANG = 'ro';
+try{ LANG = localStorage.getItem('dpLang') || 'ro'; }catch(e){ LANG = 'ro'; }
 
 const t = k => (I18N[LANG] && I18N[LANG][k]) || I18N.en[k] || k;
 const tierLabel = name => t('tier.' + name);
@@ -1050,6 +1045,8 @@ render();
 // ─── language application ──────────────────────────────────────────────────
 function applyLang(){
   document.documentElement.lang = LANG;
+  document.title = LANG==='ro' ? 'Străzile școlilor din București'
+                               : 'School Streets, Bucharest';
   document.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent = t(el.dataset.i18n); });
   document.querySelectorAll('[data-i18n-html]').forEach(el=>{ el.innerHTML = t(el.dataset.i18nHtml); });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ el.placeholder = t(el.dataset.i18nPh); });
