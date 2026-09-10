@@ -106,7 +106,9 @@ header.page{border-bottom:2px solid var(--text); padding-bottom:1.15rem;}
 }
 h1{
   font-family:'Archivo',Helvetica,Arial,sans-serif; font-weight:700;
-  font-size:clamp(1.9rem,4.6vw,2.9rem); line-height:.98; margin:0 0 .75rem;
+  font-size:clamp(1.9rem,4.6vw,2.9rem); line-height:1.08; margin:0 0 .75rem;
+  /* 1.08, not .98: Romanian comma-below diacritics (Ș, Ț) collide with the
+     next line at tighter leading. */
   letter-spacing:-.028em; text-transform:uppercase; text-wrap:balance;
 }
 .dek{font-size:.92rem; color:var(--text-muted); max-width:68ch; line-height:1.62; margin:0;}
