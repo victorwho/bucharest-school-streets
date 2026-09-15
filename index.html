@@ -197,6 +197,16 @@ h1{
   text-transform:uppercase; color:var(--text-faint); margin:.1rem 0 .75rem;
 }
 
+/* ---- city switcher ---- */
+.citybtn{
+  float:right; margin-left:.4rem; padding:.45rem .8rem; text-decoration:none;
+  border:1px solid var(--accent); background:var(--accent); color:#fff;
+  font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.11em;
+  text-transform:uppercase; transition:opacity .14s;
+}
+.citybtn:hover{opacity:.88;}
+.citybtn:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
 /* ── language toggle ────────────────────────────────────────────────────── */
 .langbtn{
   float:right; padding:.45rem .8rem; border:1px solid var(--border-strong);
@@ -437,6 +447,7 @@ footer.note{
   </div>
   <p class="count" id="rowcount"></p>
 
+  <a class="citybtn" id="cityBtn" href="iasi/" data-i18n="navLabel">Iași →</a>
   <button class="langbtn" id="langBtn" type="button" aria-label="Limba / Language"></button>
   <div class="viewtoggle" id="viewToggle">
     <button class="active" data-view="list" data-i18n="vList">Listă</button>
@@ -533,59 +544,97 @@ const KIND_LABEL = {H:'Highschool', S:'School'};
 // Romanian is the default, English is the toggle. Follows the EN/FR pattern
 // already shipped on the Paris map.
 const I18N = {
-  en:{
-    eyebrow:'Defensive Pedal · Cycling Risk Survey',
-    title:'School Streets<br>of Bucharest',
-    dek:'Every school and highschool in the city, matched to the street outside it and graded by how dangerous that street is to cycle. Institutions and street geometry from OpenStreetMap; risk banding from the Defensive Pedal routing model.',
-    mCoverage:'<b>Coverage</b> Municipiul București',
-    mInst:'<b>Institutions</b> 303',
-    mModel:'<b>Model</b> b46v2',
-    mSource:'<b>Source</b> OSM ODbL',
-    sInst:'Institutions', sHigh:'Highschools', sStreets:'Streets', sOnHigh:'On High / Extreme',
-    'tier.Safer':'Safer', 'tier.Typical':'Typical', 'tier.High':'High', 'tier.Extreme':'Extreme',
-    search:'Search school or street name…',
-    cAll:'All types', cHigh:'Highschools', cSchool:'Schools',
-    oRiskDesc:'Risk: highest first', oRiskAsc:'Risk: lowest first',
-    oName:'School A → Z', oStreet:'Street A → Z',
-    vList:'List', vMap:'Map',
-    thSchool:'School', thStreet:'Street', thBand:'Risk band',
-    thUp:'Top risk factor', thDown:'Top mitigating factor',
-    empty:'No schools match that search.',
-    kindH:'Highschool', kindS:'School',
-    lgRisk:'Street risk', lgShown:'Schools shown',
-    attrib:'Basemap & risk data © OpenStreetMap contributors (ODbL)',
-    panelUp:'↑ Increases risk', panelDown:'↓ Decreases risk',
-    noUp:'No risk-increasing factors recorded.',
-    noDown:'No mitigating factors recorded.',
-    mapNote:'Drag to pan, scroll or the +/− buttons to zoom, click a school marker for its full risk breakdown. Colored streets are the ones with schools on them, shaded by each segment’s own risk band — the filters above narrow which <em>markers</em> appear, not the street network. Everything under them (the rest of the road network, water, parks, the city outline) is drawn from the same OpenStreetMap data and baked into the page: this sandbox blocks external tile servers, so there is no live basemap to call.',
-    footer:'A street’s band comes from the length-weighted average across every road segment carrying that street name inside the Bucharest administrative boundary (OSM relation 377733), restricted to drivable street classes (motorway…service; cycleways and footways excluded). Each school is matched to its geometrically nearest such street via a KNN spatial lookup — median distance 43&nbsp;m, two campuses (large sites) matched at 280–360&nbsp;m. 30 amenity=school entries were excluded as non-K-12 (driving schools, after-school programs, kindergartens-only, professional training). Scores are published as bands, and factors by <em>direction only</em> — whether each pushes a street’s risk up (▲) or down (▼), strongest first. The underlying numbers and factor weights are model internals and are deliberately not included. The flat per-city constant is omitted too: it is identical on every Bucharest street and says nothing about any one of them.',
+  "ro": {
+    "eyebrow": "Defensive Pedal · Studiu de risc pentru cicliști",
+    "mModel": "<b>Model</b> b46v2",
+    "mSource": "<b>Sursă</b> OSM ODbL",
+    "sInst": "Instituții",
+    "sHigh": "Licee",
+    "sStreets": "Străzi",
+    "sOnHigh": "Pe risc ridicat / extrem",
+    "tier.Safer": "Mai sigur",
+    "tier.Typical": "Obișnuit",
+    "tier.High": "Ridicat",
+    "tier.Extreme": "Extrem",
+    "search": "Caută o școală sau o stradă…",
+    "cAll": "Toate",
+    "cHigh": "Licee",
+    "cSchool": "Școli",
+    "oRiskDesc": "Risc: descrescător",
+    "oRiskAsc": "Risc: crescător",
+    "oName": "Școală A → Z",
+    "oStreet": "Stradă A → Z",
+    "vList": "Listă",
+    "vMap": "Hartă",
+    "thSchool": "Școală",
+    "thStreet": "Stradă",
+    "thBand": "Bandă de risc",
+    "thUp": "Principalul factor agravant",
+    "thDown": "Principalul factor atenuant",
+    "empty": "Nicio școală nu corespunde căutării.",
+    "kindH": "Liceu",
+    "kindS": "Școală",
+    "lgRisk": "Riscul străzii",
+    "lgShown": "Instituții afișate",
+    "attrib": "Harta de bază și datele de risc © contribuitorii OpenStreetMap (ODbL)",
+    "panelUp": "↑ Crește riscul",
+    "panelDown": "↓ Scade riscul",
+    "noUp": "Niciun factor care să crească riscul.",
+    "noDown": "Niciun factor atenuant.",
+    "mapNote": "Trage pentru a deplasa harta, derulează sau folosește butoanele +/− pentru zoom, apasă pe un marcaj pentru detalii. Străzile colorate sunt cele pe care se află școli, nuanțate după banda de risc a fiecărui segment — filtrele de mai sus restrâng <em>marcajele</em> afișate, nu rețeaua de străzi. Tot ce se vede dedesubt (restul rețelei rutiere, apele, parcurile, conturul orașului) este desenat din aceleași date OpenStreetMap și înglobat în pagină: acest mediu blochează serverele externe de dale, așa că nu există o hartă de bază care să poată fi încărcată.",
+    "title": "Străzile școlilor<br>din București",
+    "dek": "Fiecare școală și liceu din oraș, asociate cu strada din fața lor și evaluate după cât de periculos este să circuli cu bicicleta pe ea. Instituțiile și geometria străzilor provin din OpenStreetMap; încadrarea pe benzi de risc, din modelul de rutare Defensive Pedal.",
+    "mCoverage": "<b>Acoperire</b> Municipiul București",
+    "mInst": "<b>Instituții</b> 303",
+    "docTitle": "Străzile școlilor din București",
+    "navLabel": "Iași →",
+    "footer": "Banda unei străzi rezultă din media ponderată cu lungimea a tuturor segmentelor de drum care poartă acel nume în interiorul limitei administrative a Bucureștiului (relația OSM 377733), limitată la clasele de drum circulabile (motorway…service; pistele de biciclete și trotuarele sunt excluse). Fiecare școală este asociată celei mai apropiate astfel de străzi printr-o căutare spațială KNN — distanță mediană 43&nbsp;m, două campusuri (situri mari) asociate la 280–360&nbsp;m. 30 de intrări amenity=school au fost excluse ca nefiind învățământ preuniversitar (școli de șoferi, programe after-school, grădinițe, formare profesională). Scorurile sunt publicate ca benzi, iar factorii doar ca <em>direcție</em> — dacă fiecare crește (▲) sau scade (▼) riscul străzii, în ordinea importanței. Valorile numerice și ponderile factorilor țin de interiorul modelului și nu sunt incluse intenționat. Constanta fixă pe oraș este și ea omisă: este identică pe fiecare stradă din București și nu spune nimic despre vreuna anume."
   },
-  ro:{
-    eyebrow:'Defensive Pedal · Studiu de risc pentru cicliști',
-    title:'Străzile școlilor<br>din București',
-    dek:'Fiecare școală și liceu din oraș, asociate cu strada din fața lor și evaluate după cât de periculos este să circuli cu bicicleta pe ea. Instituțiile și geometria străzilor provin din OpenStreetMap; încadrarea pe benzi de risc, din modelul de rutare Defensive Pedal.',
-    mCoverage:'<b>Acoperire</b> Municipiul București',
-    mInst:'<b>Instituții</b> 303',
-    mModel:'<b>Model</b> b46v2',
-    mSource:'<b>Sursă</b> OSM ODbL',
-    sInst:'Instituții', sHigh:'Licee', sStreets:'Străzi', sOnHigh:'Pe risc ridicat / extrem',
-    'tier.Safer':'Mai sigur', 'tier.Typical':'Obișnuit', 'tier.High':'Ridicat', 'tier.Extreme':'Extrem',
-    search:'Caută o școală sau o stradă…',
-    cAll:'Toate', cHigh:'Licee', cSchool:'Școli',
-    oRiskDesc:'Risc: descrescător', oRiskAsc:'Risc: crescător',
-    oName:'Școală A → Z', oStreet:'Stradă A → Z',
-    vList:'Listă', vMap:'Hartă',
-    thSchool:'Școală', thStreet:'Stradă', thBand:'Bandă de risc',
-    thUp:'Principalul factor agravant', thDown:'Principalul factor atenuant',
-    empty:'Nicio școală nu corespunde căutării.',
-    kindH:'Liceu', kindS:'Școală',
-    lgRisk:'Riscul străzii', lgShown:'Instituții afișate',
-    attrib:'Harta de bază și datele de risc © contribuitorii OpenStreetMap (ODbL)',
-    panelUp:'↑ Crește riscul', panelDown:'↓ Scade riscul',
-    noUp:'Niciun factor care să crească riscul.',
-    noDown:'Niciun factor atenuant.',
-    mapNote:'Trage pentru a deplasa harta, derulează sau folosește butoanele +/− pentru zoom, apasă pe un marcaj pentru detalii. Străzile colorate sunt cele pe care se află școli, nuanțate după banda de risc a fiecărui segment — filtrele de mai sus restrâng <em>marcajele</em> afișate, nu rețeaua de străzi. Tot ce se vede dedesubt (restul rețelei rutiere, apele, parcurile, conturul orașului) este desenat din aceleași date OpenStreetMap și înglobat în pagină: acest mediu blochează serverele externe de dale, așa că nu există o hartă de bază care să poată fi încărcată.',
-    footer:'Banda unei străzi rezultă din media ponderată cu lungimea a tuturor segmentelor de drum care poartă acel nume în interiorul limitei administrative a Bucureștiului (relația OSM 377733), limitată la clasele de drum circulabile (motorway…service; pistele de biciclete și trotuarele sunt excluse). Fiecare școală este asociată celei mai apropiate astfel de străzi printr-o căutare spațială KNN — distanță mediană 43&nbsp;m, două campusuri (situri mari) asociate la 280–360&nbsp;m. 30 de intrări amenity=school au fost excluse ca nefiind învățământ preuniversitar (școli de șoferi, programe after-school, grădinițe, formare profesională). Scorurile sunt publicate ca benzi, iar factorii doar ca <em>direcție</em> — dacă fiecare crește (▲) sau scade (▼) riscul străzii, în ordinea importanței. Valorile numerice și ponderile factorilor țin de interiorul modelului și nu sunt incluse intenționat. Constanta fixă pe oraș este și ea omisă: este identică pe fiecare stradă din București și nu spune nimic despre vreuna anume.',
+  "en": {
+    "eyebrow": "Defensive Pedal · Cycling Risk Survey",
+    "mModel": "<b>Model</b> b46v2",
+    "mSource": "<b>Source</b> OSM ODbL",
+    "sInst": "Institutions",
+    "sHigh": "Highschools",
+    "sStreets": "Streets",
+    "sOnHigh": "On High / Extreme",
+    "tier.Safer": "Safer",
+    "tier.Typical": "Typical",
+    "tier.High": "High",
+    "tier.Extreme": "Extreme",
+    "search": "Search school or street name…",
+    "cAll": "All types",
+    "cHigh": "Highschools",
+    "cSchool": "Schools",
+    "oRiskDesc": "Risk: highest first",
+    "oRiskAsc": "Risk: lowest first",
+    "oName": "School A → Z",
+    "oStreet": "Street A → Z",
+    "vList": "List",
+    "vMap": "Map",
+    "thSchool": "School",
+    "thStreet": "Street",
+    "thBand": "Risk band",
+    "thUp": "Top risk factor",
+    "thDown": "Top mitigating factor",
+    "empty": "No schools match that search.",
+    "kindH": "Highschool",
+    "kindS": "School",
+    "lgRisk": "Street risk",
+    "lgShown": "Schools shown",
+    "attrib": "Basemap & risk data © OpenStreetMap contributors (ODbL)",
+    "panelUp": "↑ Increases risk",
+    "panelDown": "↓ Decreases risk",
+    "noUp": "No risk-increasing factors recorded.",
+    "noDown": "No mitigating factors recorded.",
+    "mapNote": "Drag to pan, scroll or the +/− buttons to zoom, click a school marker for its full risk breakdown. Colored streets are the ones with schools on them, shaded by each segment’s own risk band — the filters above narrow which <em>markers</em> appear, not the street network. Everything under them (the rest of the road network, water, parks, the city outline) is drawn from the same OpenStreetMap data and baked into the page: this sandbox blocks external tile servers, so there is no live basemap to call.",
+    "title": "School Streets<br>of Bucharest",
+    "dek": "Every school and highschool in the city, matched to the street outside it and graded by how dangerous that street is to cycle. Institutions and street geometry from OpenStreetMap; risk banding from the Defensive Pedal routing model.",
+    "mCoverage": "<b>Coverage</b> Municipiul București",
+    "mInst": "<b>Institutions</b> 303",
+    "docTitle": "School Streets, Bucharest",
+    "navLabel": "Iași →",
+    "footer": "A street’s band comes from the length-weighted average across every road segment carrying that street name inside the Bucharest administrative boundary (OSM relation 377733), restricted to drivable street classes (motorway…service; cycleways and footways excluded). Each school is matched to its geometrically nearest such street via a KNN spatial lookup — median distance 43&nbsp;m, two campuses (large sites) matched at 280–360&nbsp;m. 30 amenity=school entries were excluded as non-K-12 (driving schools, after-school programs, kindergartens-only, professional training). Scores are published as bands, and factors by <em>direction only</em> — whether each pushes a street’s risk up (▲) or down (▼), strongest first. The underlying numbers and factor weights are model internals and are deliberately not included. The flat per-city constant is omitted too: it is identical on every Bucharest street and says nothing about any one of them."
   }
 };
 
@@ -1067,8 +1116,7 @@ render();
 // ─── language application ──────────────────────────────────────────────────
 function applyLang(){
   document.documentElement.lang = LANG;
-  document.title = LANG==='ro' ? 'Străzile școlilor din București'
-                               : 'School Streets, Bucharest';
+  document.title = t('docTitle');
   document.querySelectorAll('[data-i18n]').forEach(el=>{ el.textContent = t(el.dataset.i18n); });
   document.querySelectorAll('[data-i18n-html]').forEach(el=>{ el.innerHTML = t(el.dataset.i18nHtml); });
   document.querySelectorAll('[data-i18n-ph]').forEach(el=>{ el.placeholder = t(el.dataset.i18nPh); });
